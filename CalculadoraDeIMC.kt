@@ -22,29 +22,36 @@ class CalculadoraDeIMC :  AppCompatActivity(){
             insets
         }
 
-        // Definimos todos los Botones, TextView y EditText que componen la app
-        val btnCalcular = findViewById<Button>(R.id.botonCalcular)
-        val textoResultadoIMC = findViewById<TextView>(R.id.textViewResultadoIMC)
-        val editTextMasa = findViewById<EditText>(R.id.editTextPesoEnKG)
-        val editTextEstatura = findViewById<EditText>(R.id.editTextAlturaEnMetros)
-        val textoRangoIMC = findViewById<TextView>(R.id.textViewRangoIMC)
-
         // Dotamos de funcionalidad al btn de calcular
         btnCalcular.setOnClickListener() {
+
+            // Declaración de constantes que vamos a usar
             val masa = editTextMasa.text.toString().toDouble()
             val estatura = editTextEstatura.text.toString().toDouble()
+            val imc = calcularIMC(masa, estatura)
 
             // Mtd para redondear el numero Double en 2 decimales
-            val imc = calcularIMC(masa, estatura)
             val imcFormateado = DecimalFormat("#.##").format(imc)
+
+            // Notficación Toast para darle un feedback al usuario con la acción de clickar
+            val toast = Toast.makeText(this, "Procesado correctamente",Toast.LENGTH_SHORT)
+            toast.show()
 
             // Imprimimos la linea de txt mediante la TextView habilitada
             textoResultadoIMC.text = "Tu IMC actual es de $imcFormateado"
 
             // Clasificación de la OMS del estado nutricional de acuerdo con el IMC
             when (imc) {
-                in 0.00..18.49 -> {
-                    textoRangoIMC.text = "Clasificación: Infrapeso"
+                in 0.00..15.99 -> {
+                    textoRangoIMC.text = "Clasificación: Delgadez severa"
+                }
+
+                in 16.00..16.99 -> {
+                    textoRangoIMC.text = "Clasificación: Delagadez moderada"
+                }
+
+                in 17.00..18.49 -> {
+                    textoRangoIMC.text = "Clasificación: Delgadez leve"
                 }
 
                 in 18.50..24.99 -> {
@@ -56,20 +63,17 @@ class CalculadoraDeIMC :  AppCompatActivity(){
                 }
 
                 in 30.00..34.99 -> {
-                    textoRangoIMC.text = "Clasificación: Obesidad de clase I"
+                    textoRangoIMC.text = "Clasificación: Obesidad leve"
                 }
 
                 in 35.00..39.99 -> {
-                    textoRangoIMC.text = "Clasificación: Obesidad de clase II"
+                    textoRangoIMC.text = "Clasificación: Obesidad media"
                 }
 
                 else -> {
-                    textoRangoIMC.text = "Clasificación: Obesidad de clase III"
+                    textoRangoIMC.text = "Clasificación: Obesidad mórbida"
                 }
             }
-
-            val toast = Toast.makeText(this, "Procesado correctamente",Toast.LENGTH_SHORT)
-            toast.show()
         }
     }
 
