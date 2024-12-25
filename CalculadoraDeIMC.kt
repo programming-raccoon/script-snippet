@@ -47,7 +47,6 @@ class CalculadoraDeIMC :  AppCompatActivity(){
             // Imprimimos la linea de txt mediante la TextView habilitada
             textoResultadoIMC.text = "Tu IMC actual es de $imcFormateado"
 
-
             // Clasificación de la OMS del estado nutricional de acuerdo con el IMC
             when (imc) {
                 in 0.00..15.99 -> {
