@@ -4,4 +4,4 @@ Recopilación de retazos de código de los proyectos personales que voy realizan
 
 Para echar un vistazo rápido a las funcionalidades de cada código es recomendable usar Kotlin playgrounds para probar una versión mini de las mismas.
 
-CalculadoraDeIMC.kt : https://play.kotlinlang.org/embed?short=jN3CbGAXR&theme=darcula
+CalculadoraDeIMC.kt : https://pl.kotl.in/jOuMj7lXZ?theme=darcula
