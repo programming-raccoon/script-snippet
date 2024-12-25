@@ -22,9 +22,16 @@ class CalculadoraDeIMC :  AppCompatActivity(){
             insets
         }
 
+        // Definimos todos los Botones, TextView y EditText que componen la app
+        val btnCalcular = findViewById<Button>(R.id.botonCalcular)
+        val textoResultadoIMC = findViewById<TextView>(R.id.textViewResultadoIMC)
+        val editTextMasa = findViewById<EditText>(R.id.editTextPesoEnKG)
+        val editTextEstatura = findViewById<EditText>(R.id.editTextAlturaEnMetros)
+        val textoRangoIMC = findViewById<TextView>(R.id.textViewRangoIMC)
+
         // Dotamos de funcionalidad al btn de calcular
         btnCalcular.setOnClickListener() {
-
+            
             // Declaración de constantes que vamos a usar
             val masa = editTextMasa.text.toString().toDouble()
             val estatura = editTextEstatura.text.toString().toDouble()
@@ -39,6 +46,7 @@ class CalculadoraDeIMC :  AppCompatActivity(){
 
             // Imprimimos la linea de txt mediante la TextView habilitada
             textoResultadoIMC.text = "Tu IMC actual es de $imcFormateado"
+
 
             // Clasificación de la OMS del estado nutricional de acuerdo con el IMC
             when (imc) {
@@ -69,9 +77,11 @@ class CalculadoraDeIMC :  AppCompatActivity(){
                 in 35.00..39.99 -> {
                     textoRangoIMC.text = "Clasificación: Obesidad media"
                 }
-
-                else -> {
+                in 40.00.. 10000000.00 -> {
                     textoRangoIMC.text = "Clasificación: Obesidad mórbida"
+                }
+                else -> {
+                    textoRangoIMC.text = "Error, por favor vuelva a intentarlo"
                 }
             }
         }
